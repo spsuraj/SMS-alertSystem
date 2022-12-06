@@ -28,12 +28,12 @@ void setup()
 
 void loop() 
 {
-  // Look for new cards in affinity
+  // Look for new cards
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
   {
     return;
   }
-  // Scan the card
+  // Select one of the cards
   if ( ! mfrc522.PICC_ReadCardSerial()) 
   {
     return;
@@ -58,12 +58,10 @@ void loop()
     Serial.println("Authorized access");
     mySerial.println("AT+CMGF=1"); // Configuring TEXT mode
     updateSerial();
-    mySerial.println("AT+CMGS=\"+15198729239\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
+    mySerial.println("AT+CMGS=\"+14162091515\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
     updateSerial();
     delay(1000);
-    mySerial.print(" You have a new bank statement available. Login securely online to view "); 
-    updateSerial();
-    mySerial.print("Thank you");
+    mySerial.print(" You have a new bank statement available. Login securely online to view"); 
     updateSerial();
     mySerial.write(26); //The text message entered followed by a ‘Ctrl+z’ character is treated as SMS. ‘Ctrl+z’ is actually a 26th non-printing character described as ‘substitute’ in ASCII table. So, we need to send 26Dec (1AHex) once we send a message.
     Serial.println();
@@ -74,7 +72,7 @@ void loop()
     Serial.println("Authorized access");
     mySerial.println("AT+CMGF=1"); // Configuring TEXT mode
     updateSerial();
-    mySerial.println("AT+CMGS=\"+15198729239\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
+    mySerial.println("AT+CMGS=\"+14379873973\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
     updateSerial();
     mySerial.print(" Your OTP is 2054. Please call us immediately if this was not initiated by you. "); 
     updateSerial();
@@ -85,6 +83,16 @@ void loop()
   }
   else{
     Serial.println("Please Try again");
+    mySerial.println("AT+CMGF=1"); // Configuring TEXT mode
+    updateSerial();
+    mySerial.println("AT+CMGS=\"+4379880676\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
+    updateSerial();
+    mySerial.print(" Invalid access. Please contact your bank for further details. "); 
+    updateSerial();
+    mySerial.write(26);
+    //The text message entered followed by a ‘Ctrl+z’ character is treated as SMS. ‘Ctrl+z’ is actually a 26th non-printing character described as ‘substitute’ in ASCII table. So, we need to send 26Dec (1AHex) once we send a message.
+    Serial.println();
+    delay(3000);
   }
   delay(1000);
 } 
