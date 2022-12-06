@@ -1,7 +1,6 @@
 //Import library for the RFID reader
 #include <SPI.h>
 #include <MFRC522.h>
-
 //Function to communicate with the GSM module
 #include <SoftwareSerial.h>
 
@@ -29,12 +28,12 @@ void setup()
 
 void loop() 
 {
-  // Look for new cards
+  // Look for new cards in affinity
   if ( ! mfrc522.PICC_IsNewCardPresent()) 
   {
     return;
   }
-  // Select one of the cards
+  // Scan the card
   if ( ! mfrc522.PICC_ReadCardSerial()) 
   {
     return;
